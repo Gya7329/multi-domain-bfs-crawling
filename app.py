@@ -159,8 +159,9 @@ async def get():
                 const patterns = patternsInput.split(',').map(p => p.trim());
                 resultsList.innerHTML = ''; // Clear previous results
 
-                const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-                const ws = `${protocol}//${window.location.host}/ws?domains=${JSON.stringify(domains)}&max_pages=${maxPages}&patterns=${JSON.stringify(patterns)}`;
+                const domain = window.location.protocol === "https:" ? "wss://multi-domain-bfs-crawling.onrender.com" : "ws://localhost:8000";
+                debugger;
+                const ws = new WebSocket(`${domain}/ws?domains=${JSON.stringify(domains)}&max_pages=${maxPages}&patterns=${JSON.stringify(patterns)}`);
                 ws.onmessage = (event) => {
                     const li = document.createElement('li');
                     li.textContent = event.data;
