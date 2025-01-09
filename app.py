@@ -160,7 +160,6 @@ async def get():
                 resultsList.innerHTML = ''; // Clear previous results
 
                 const domain = window.location.protocol === "https:" ? "wss://multi-domain-bfs-crawling.onrender.com" : "ws://localhost:8000";
-                debugger;
                 const ws = new WebSocket(`${domain}/ws?domains=${JSON.stringify(domains)}&max_pages=${maxPages}&patterns=${JSON.stringify(patterns)}`);
                 ws.onmessage = (event) => {
                     const li = document.createElement('li');
