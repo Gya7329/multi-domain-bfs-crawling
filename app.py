@@ -159,7 +159,8 @@ async def get():
                 const patterns = patternsInput.split(',').map(p => p.trim());
                 resultsList.innerHTML = ''; // Clear previous results
 
-                const ws = new WebSocket(`ws://localhost:8000/ws?domains=${JSON.stringify(domains)}&max_pages=${maxPages}&patterns=${JSON.stringify(patterns)}`);
+                const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+                const wsUrl = `${protocol}//${window.location.host}/ws?domains=${JSON.stringify(domains)}&max_pages=${maxPages}&patterns=${JSON.stringify(patterns)}`;
                 ws.onmessage = (event) => {
                     const li = document.createElement('li');
                     li.textContent = event.data;
