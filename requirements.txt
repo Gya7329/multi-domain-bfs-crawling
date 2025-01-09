@@ -1,6 +1,5 @@
 fastapi
 aiohttp
 beautifulsoup4
-uvicorn
-'uvicorn[standard]'
+uvicorn[standard]
 websockets
